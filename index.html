@@ -135,23 +135,12 @@
 <p>来源：<a href="http://blog.csdn.net/jiangwei0910410003/article/details/39670813" target="_blank" rel="external">http://blog.csdn.net/jiangwei0910410003/article/details/39670813</a></p>
 <p>Andoird的SQLiteOpenHelper类中有一个onUpgrade方法，当数据库升级时会被调用。所以我们可以在更新之前把原来表中的数据备份一下插入到新的数据库当中去。</p>
 <p><strong>具体步骤：</strong></p>
-<p>1.把原表重命名作为临时表</p>
-<pre><code>CREATE_TEMP_BOOK = &quot;alter table book rename to _temp_book&quot;;  
-</code></pre><p>2.建立一张新的表</p>
-<pre><code>CREATE_BOOK = &quot;create table book(bookId integer primarykey,bookName text,bookContent text);&quot;;  
-</code></pre><p>3.把临时表的内容插入到新表中</p>
-<pre><code>INSERT_DATA = &quot;insert into book select *,&apos; &apos; from _temp_book&quot;;（注意&apos; &apos;是为新加的字段插入默认值的必须加上，否则就会出错）  
-</code></pre><p>4.删除临时表</p>
-<pre><code>DROP_BOOK = &quot;drop table _temp_book&quot;;  
-</code></pre><p>5.重写onUpgrade方法</p>
-<pre><code>@Override  
-public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {  
-                db.execSQL(CREATE_TEMP_BOOK);  
-                db.execSQL(CREATE_BOOK);  
-                db.execSQL(INSERT_DATA);  
-                db.execSQL(DROP_BOOK);  
-}  
-</code></pre>
+<p>1.把原表重命名作为临时表<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE_TEMP_BOOK = <span class="string">"alter table book rename to _temp_book"</span>;</span><br></pre></td></tr></table></figure></p>
+<p>2.建立一张新的表<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE_BOOK = <span class="string">"create table book(bookId integer primarykey,bookName text,bookContent text);"</span>;</span><br></pre></td></tr></table></figure></p>
+<p>3.把临时表的内容插入到新表中<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">   INSERT_DATA = <span class="string">"insert into book select *,' ' from _temp_book"</span>;</span><br><span class="line"><span class="comment">//（注意' '是为新加的字段插入默认值的必须加上，否则就会出错）</span></span><br></pre></td></tr></table></figure></p>
+<p>4.删除临时表<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DROP_BOOK = <span class="string">"drop table _temp_book"</span>;</span><br></pre></td></tr></table></figure></p>
+<p>5.重写onUpgrade方法<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span>  </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onUpgrade</span><span class="params">(SQLiteDatabase db, <span class="keyword">int</span> oldVersion, <span class="keyword">int</span> newVersion)</span> </span>&#123;  </span><br><span class="line">   			 db.execSQL(CREATE_TEMP_BOOK);  </span><br><span class="line">   			 db.execSQL(CREATE_BOOK);  </span><br><span class="line">   			 db.execSQL(INSERT_DATA);  </span><br><span class="line">   			 db.execSQL(DROP_BOOK);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
       
     </div>
     
