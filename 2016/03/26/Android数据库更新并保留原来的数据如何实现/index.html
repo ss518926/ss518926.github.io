@@ -4,18 +4,30 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>我的博客 | 禁地</title>
+  <title>禁地</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="他年，偶遇，独饮">
+  <meta name="description" content="Android数据库更新并保留原来的数据如何实现
+来源：http://blog.csdn.net/jiangwei0910410003/article/details/39670813
+Andoird的SQLiteOpenHelper类中有一个onUpgrade方法，当数据库升级时会被调用。所以我们可以在更新之前把原来表中的数据备份一下插入到新的数据库当中去。
+具体步骤：
+1.把原表重命名作为临时">
 <meta property="og:type" content="article">
-<meta property="og:title" content="我的博客">
-<meta property="og:url" content="http://ss518926.github.io/2016/03/26/我的博客/index.html">
+<meta property="og:title" content="禁地">
+<meta property="og:url" content="http://seselin.github.io/2016/03/26/Android数据库更新并保留原来的数据如何实现/index.html">
 <meta property="og:site_name" content="禁地">
-<meta property="og:description" content="他年，偶遇，独饮">
-<meta property="og:updated_time" content="2016-03-25T20:01:04.776Z">
+<meta property="og:description" content="Android数据库更新并保留原来的数据如何实现
+来源：http://blog.csdn.net/jiangwei0910410003/article/details/39670813
+Andoird的SQLiteOpenHelper类中有一个onUpgrade方法，当数据库升级时会被调用。所以我们可以在更新之前把原来表中的数据备份一下插入到新的数据库当中去。
+具体步骤：
+1.把原表重命名作为临时">
+<meta property="og:updated_time" content="2016-03-23T16:27:34.280Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="我的博客">
-<meta name="twitter:description" content="他年，偶遇，独饮">
+<meta name="twitter:title" content="禁地">
+<meta name="twitter:description" content="Android数据库更新并保留原来的数据如何实现
+来源：http://blog.csdn.net/jiangwei0910410003/article/details/39670813
+Andoird的SQLiteOpenHelper类中有一个onUpgrade方法，当数据库升级时会被调用。所以我们可以在更新之前把原来表中的数据备份一下插入到新的数据库当中去。
+具体步骤：
+1.把原表重命名作为临时">
   
     <link rel="alternative" href="/atom.xml" title="禁地" type="application/atom+xml">
   
@@ -33,7 +45,7 @@
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
 			
-			<img lazy-src="http://7xlw2m.com1.z0.glb.clouddn.com/white.jpg" class="js-avatar">
+			<img src="http://7xlw2m.com1.z0.glb.clouddn.com/white300.jpg" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
 			
 		</a>
 
@@ -87,7 +99,7 @@
 		<header id="header" class="inner">
 			<div class="profilepic">
 			
-				<img lazy-src="http://7xlw2m.com1.z0.glb.clouddn.com/white.jpg" class="js-avatar">
+				<img src="http://7xlw2m.com1.z0.glb.clouddn.com/white300.jpg" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
 			
 			</div>
 			<hgroup>
@@ -115,11 +127,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-我的博客" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Android数据库更新并保留原来的数据如何实现" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/03/26/我的博客/" class="article-date">
-  	<time datetime="2016-03-25T20:01:04.000Z" itemprop="datePublished">2016-03-26</time>
+      <a href="/2016/03/26/Android数据库更新并保留原来的数据如何实现/" class="article-date">
+  	<time datetime="2016-03-26T09:17:20.248Z" itemprop="datePublished">2016-03-26</time>
 </a>
     </div>
   
@@ -128,43 +140,35 @@
       <input type="hidden" class="isFancy" />
     
     
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      我的博客
-    </h1>
-  
-
-      </header>
-      
-      <div class="article-info article-info-post">
-        
-        
-
-        <div class="clearfix"></div>
-      </div>
-      
-    
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p><strong>Android数据库更新并保留原来的数据如何实现</strong></p>
+<p>来源：<a href="http://blog.csdn.net/jiangwei0910410003/article/details/39670813" target="_blank" rel="external">http://blog.csdn.net/jiangwei0910410003/article/details/39670813</a></p>
+<p>Andoird的SQLiteOpenHelper类中有一个onUpgrade方法，当数据库升级时会被调用。所以我们可以在更新之前把原来表中的数据备份一下插入到新的数据库当中去。</p>
+<p><strong>具体步骤：</strong></p>
+<p>1.把原表重命名作为临时表</p>
+<pre><code>CREATE_TEMP_BOOK = &quot;alter table book rename to _temp_book&quot;;  
+</code></pre><p>2.建立一张新的表</p>
+<pre><code>CREATE_BOOK = &quot;create table book(bookId integer primarykey,bookName text,bookContent text);&quot;;  
+</code></pre><p>3.把临时表的内容插入到新表中</p>
+<pre><code>INSERT_DATA = &quot;insert into book select *,&apos; &apos; from _temp_book&quot;;（注意&apos; &apos;是为新加的字段插入默认值的必须加上，否则就会出错）  
+</code></pre><p>4.删除临时表</p>
+<pre><code>DROP_BOOK = &quot;drop table _temp_book&quot;;  
+</code></pre><p>5.重写onUpgrade方法</p>
+<pre><code>@Override  
+public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {  
+                db.execSQL(CREATE_TEMP_BOOK);  
+                db.execSQL(CREATE_BOOK);  
+                db.execSQL(INSERT_DATA);  
+                db.execSQL(DROP_BOOK);  
+}  
+</code></pre>
       
     </div>
     
   </div>
   
     
-<nav id="article-nav">
-  
-  
-    <a href="/2016/03/26/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Hello World</div>
-      <strong class="article-nav-caption">></strong>
-    </a>
-  
-</nav>
-
   
 </article>
 
@@ -197,7 +201,7 @@
 	var yiliaConfig = {
 		fancybox: true,
 		mathjax: true,
-		animate: true,
+		animate: false,
 		isHome: false,
 		isPost: true,
 		isArchive: false,
